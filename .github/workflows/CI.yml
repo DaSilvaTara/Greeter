@@ -13,9 +13,13 @@ jobs:
   # CI (Integration Continue) : verifier chaque changement
   # ==========================================================================
 
-  build-and-test:
-    name: CI - Compiler et tester
-    runs-on: ubuntu-latest
+   build-and-test:
+    name: CI - Compiler et tester (${{ matrix.os }})   # un nom par systeme
+    strategy:                                   
+      fail-fast: false                          # ne pas arreter Windows si Linux echoue
+      matrix:                                   
+        os: [ubuntu-latest, windows-latest]     
+    runs-on: ${{ matrix.os }}  
 
     steps:
       - name: Recuperer le code
