@@ -29,10 +29,10 @@ jobs:
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
       - name: Compiler
-        run: cmake --build build
+        run: cmake --build build --config Release                   
 
       - name: Tester (ctest)
-        run: ctest --test-dir build --output-on-failure
+        run: ctest --test-dir build -C Release --output-on-failure  
 
       - name: Installer et lancer le programme
         run: |
